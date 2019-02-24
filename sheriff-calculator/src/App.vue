@@ -1,38 +1,42 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+    <v-container grid-list-md text-ms-center>
+      <v-layout>
+      <v-flex xs4>
+        <Player />
+      </v-flex>
+      <v-flex xs4>
+        <Player />
+      </v-flex>
+      <v-flex xs4>
+        <Player />
+      </v-flex>
+      <v-flex xs4>
+        <Player />
+      </v-flex>
+      </v-layout>
+    </v-container>  
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import HelloWorld from "./components/HelloWorld";
+import Baseline from "./views/Baseline";
+import Dashboard from "./views/Dashboard";
+import Player from "./components/Player";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    HelloWorld,
+    Baseline,
+    Dashboard,
+    Player
   },
-  data () {
+  data() {
     return {
       //
-    }
+    };
   }
-}
+};
 </script>
