@@ -1,5 +1,5 @@
 <template>
-   <v-container fluid>
+   <v-container>
       <v-layout justify-center row wrap>
       <v-flex shrink>
         <Player :color="'crimson'"/>
@@ -10,8 +10,11 @@
       <v-flex shrink>
         <Player :color="'green'"/>
       </v-flex>
-      <v-flex shrink>
+      <v-flex  shrink>
         <Player :color="'mediumslateblue'"/>
+      </v-flex>
+      <v-flex shrink>
+        <Player :color="'blue'"/>
       </v-flex>
       </v-layout>
     </v-container>  

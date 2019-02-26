@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <v-container grid-list-md text-ms-center>
+    <v-responsive>
+      <h1> Sheriff of Nottingham Score</h1>
+    </v-responsive>
+    <v-container grid-list-md text-ms-center fluid>
       <Dashboard />
     </v-container>  
   </v-app>

@@ -45,8 +45,8 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn flat color="orange">Edit</v-btn>
-        <v-btn flat color="orange">Explore</v-btn>
+        <!-- <v-btn flat color="orange">Edit</v-btn>
+        <v-btn flat color="orange">Explore</v-btn> -->
       </v-card-actions>
     </v-card>
   </div>
