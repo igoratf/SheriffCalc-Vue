@@ -1,20 +1,7 @@
 <template>
   <v-app>
     <v-container grid-list-md text-ms-center>
-      <v-layout>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      </v-layout>
+      <Dashboard />
     </v-container>  
   </v-app>
 </template>

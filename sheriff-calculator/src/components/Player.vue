@@ -8,12 +8,27 @@
         </div>
       </v-card-title>
       <v-card-text>
-        <p>Apple</p>
-        <p>Cheese</p>
-        <p>Bread</p>
-        <p>Chicken</p>
-        <p>Contraband total</p>
-        <p>Coins</p>
+        <v-layout row wrap>
+        <v-flex xs12 sm12 md6 lg6 xl6>
+          <p>Apple: 10</p>
+        </v-flex>
+        <v-flex xs12 sm12 md6 lg6 xl6>
+          <p>Cheese: 10</p>
+        </v-flex>
+        <v-flex xs12 sm12 md6 lg6 xl6>
+          <p>Bread: 10</p>
+        </v-flex>
+        <v-flex xs12 sm12 md6 lg6 xl6>
+          <p>Chicken: 10</p>
+        </v-flex>
+        <v-flex xs12 sm12 md6 lg6 xl6>
+          <p>Contraband: 20</p>
+        </v-flex>
+        <v-flex xs12 sm12 md6 lg6 xl6>
+          <p>Coins: 50</p>
+        </v-flex>
+        </v-layout>
+
       </v-card-text>
       
       <hr>
@@ -47,7 +62,7 @@ export default {
 }
 
 .title {
-  background-color: blue;
+  background-color:  blue;
   color: white;
 }
 
