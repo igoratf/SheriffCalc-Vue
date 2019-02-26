@@ -1,7 +1,7 @@
 <template>
   <div class="player">
     <v-card hover>
-      <v-card-title primary-title class="title">
+      <v-card-title primary-title class="title" :style="{backgroundColor: color}">
         <div>
           <h3 class="headline mb-0">Player 1</h3>
           <div>{{ card_text }}</div>
@@ -33,8 +33,15 @@
       
       <hr>
       <v-card-text>
-         <p style="color: orange;"><strong>Apple King</strong></p>
-         <p style="color: silver;"><strong>Cheese Queen</strong></p>
+         <p style="color: orange;">
+           <strong>Apple King
+             <span style="float: right">+20</span>
+           </strong>
+         </p>
+         <p style="color: silver;">
+           <strong>Cheese Queen 
+             <span style="float: right"> +10</span></strong>
+          </p>
       </v-card-text>
 
       <v-card-actions>
@@ -51,7 +58,8 @@ export default {
     return {
       card_text: "Text"
     };
-  }
+  },
+  props: ['color']
 };
 </script>
 
@@ -59,10 +67,10 @@ export default {
 <style scoped>
 .player {
   margin-top: 10%;
+  max-width: 350px;
 }
 
 .title {
-  background-color:  blue;
   color: white;
 }
 

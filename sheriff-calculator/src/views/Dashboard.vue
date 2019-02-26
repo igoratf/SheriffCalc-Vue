@@ -1,17 +1,17 @@
 <template>
-   <v-container grid-list-md text-ms-center>
-      <v-layout row wrap>
-      <v-flex xs6 sm3 md3 lg3 xl3>
-        <Player />
+   <v-container fluid>
+      <v-layout justify-center row wrap>
+      <v-flex shrink>
+        <Player :color="'crimson'"/>
       </v-flex>
-      <v-flex xs6 sm3 md3 lg3 xl3>
-        <Player />
+      <v-flex shrink>
+        <Player :color="'goldenrod'"/>
       </v-flex>
-      <v-flex xs6 sm3 md3 lg3 xl3>
-        <Player />
+      <v-flex shrink>
+        <Player :color="'green'"/>
       </v-flex>
-      <v-flex xs6 sm3 md3 lg3 xl3>
-        <Player />
+      <v-flex shrink>
+        <Player :color="'mediumslateblue'"/>
       </v-flex>
       </v-layout>
     </v-container>  
