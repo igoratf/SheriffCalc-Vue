@@ -2,19 +2,19 @@
    <v-container>
       <v-layout justify-center row wrap>
       <v-flex shrink>
-        <Player :color="'crimson'"/>
+        <Player :color="'blue'"/>
+      </v-flex>
+      <v-flex shrink>
+        <Player :color="'green'"/>
+      </v-flex>
+       <v-flex  shrink>
+        <Player :color="'purple'"/>
       </v-flex>
       <v-flex shrink>
         <Player :color="'goldenrod'"/>
       </v-flex>
       <v-flex shrink>
-        <Player :color="'green'"/>
-      </v-flex>
-      <v-flex  shrink>
-        <Player :color="'mediumslateblue'"/>
-      </v-flex>
-      <v-flex shrink>
-        <Player :color="'blue'"/>
+        <Player :color="'crimson'"/>
       </v-flex>
       </v-layout>
     </v-container>  

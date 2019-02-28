@@ -1,11 +1,19 @@
 <template>
   <v-app>
-    <v-responsive>
-      <h1> Sheriff of Nottingham Score</h1>
-    </v-responsive>
+    <!-- <div class="header">
+      <h1>Sheriff of Nottingham</h1>
+    </div>-->
+    <Toolbar />
     <v-container grid-list-md text-ms-center fluid>
-      <Dashboard />
-    </v-container>  
+      <Dashboard/>
+    </v-container>
+
+    <div class="btn-add-container">
+      <v-btn class="btn-add" fab dark color="indigo">
+      <v-icon dark>add</v-icon>
+    </v-btn>
+    </div>
+    
   </v-app>
 </template>
 
@@ -14,6 +22,7 @@ import HelloWorld from "./components/HelloWorld";
 import Baseline from "./views/Baseline";
 import Dashboard from "./views/Dashboard";
 import Player from "./components/Player";
+import Toolbar from "./components/Toolbar";
 
 export default {
   name: "App",
@@ -21,7 +30,8 @@ export default {
     HelloWorld,
     Baseline,
     Dashboard,
-    Player
+    Player,
+    Toolbar
   },
   data() {
     return {
@@ -30,3 +40,24 @@ export default {
   }
 };
 </script>
+
+<style>
+.header {
+  text-align: center;
+  font-size: 2em;
+  background-color: blueviolet;
+  color: white;
+}
+
+.btn-add {
+  float: right;
+}
+
+.btn-add-container {
+  width: 100%; 
+  padding: 8px; 
+  position: fixed; 
+  bottom: 0;
+}
+</style>
+
