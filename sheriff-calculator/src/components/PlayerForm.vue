@@ -35,14 +35,6 @@
                   required
                 ></v-text-field>
               </v-flex>
-              <!-- <v-flex xs12 sm6 md4>
-                <v-text-field
-                  label="Legal last name*"
-                  hint="example of persistent helper text"
-                  persistent-hint
-                  required
-                ></v-text-field>
-              </v-flex>-->
               <v-flex xs12 sm6 md4>
                 <v-text-field
                   label="Cheeses*"
@@ -89,7 +81,7 @@
                   v-model="selectedContrabands"
                   :items="contrabands"
                   item-text="name"
-                  item-value="quantity"
+                  item-value="name"
                   return-object
                   tags
                   chips
