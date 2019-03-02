@@ -1,12 +1,12 @@
 <template>
   <v-layout row justify-center>
-    <v-btn color="primary" dark @click.stop="openNewPlayerDialog()">Open Dialog</v-btn>
+    <!-- <v-btn color="primary" dark @click.stop="openNewPlayerDialog()">Open Dialog</v-btn> -->
     <v-dialog v-model="playerDialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
           <span v-if="!editing" class="headline" :style="{color: currentColor}">{{ name }}</span>
           <v-flex xs10 sm6 md4 v-else>
-            <v-text-field class="headline" :style="{color: currentColor}" v-model="name"></v-text-field>
+            <v-text-field class="headline" :color="currentColor" v-model="name"></v-text-field>
           </v-flex>
           <v-btn icon>
             <v-icon @click="toggleEdit()">{{editing ? 'check' : 'edit'}}</v-icon>
@@ -58,7 +58,7 @@
               <v-flex xs12 sm6 md4>
                 <v-text-field
                   label="Contrabands*"
-                  v-model="contrabandPoints"
+                  v-model="contrabandScore"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -135,7 +135,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn flat @click="closeDialog()" :style="{color: currentColor}">Close</v-btn>
-          <v-btn flat @click="closeDialog()" :style="{color: currentColor}">Save</v-btn>
+          <v-btn flat @click="addNewPlayer()" :style="{color: currentColor}">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -155,7 +155,7 @@ export default {
       bread: 0,
       cheese: 0,
       chicken: 0,
-      contrabandPoints: 0,
+      contrabandScore: 0,
       selectedItem: [],
       coin: 0,
       selectedContrabands: [],
@@ -203,6 +203,20 @@ export default {
       } else {
         alert("Max numbers of players reached");
       }
+    },
+    addNewPlayer() {
+      var player = {
+        name: this.name,
+        apple: this.apple,
+        bread: this.bread,
+        cheese: this.cheese,
+        chicken: this.chicken,
+        contrabandScore: this.contrabandScore,
+        contrabands: this.selectedContrabands,
+        coin: this.coin
+      };
+      this.$store.commit('addPlayer', player);
+      this.closeDialog();
     }
   },
   watch: {
