@@ -2,19 +2,19 @@
    <v-container>
       <v-layout justify-center row wrap>
       <v-flex shrink>
-        <Player :color="'blue'"/>
+        <Player :color="colorMap[0]"/>
       </v-flex>
       <v-flex shrink>
-        <Player :color="'green'"/>
+        <Player :color="colorMap[1]"/>
       </v-flex>
        <v-flex  shrink>
-        <Player :color="'purple'"/>
+        <Player :color="colorMap[2]"/>
       </v-flex>
       <v-flex shrink>
-        <Player :color="'goldenrod'"/>
+        <Player :color="colorMap[3]"/>
       </v-flex>
       <v-flex shrink>
-        <Player :color="'crimson'"/>
+        <Player :color="colorMap[4]"/>
       </v-flex>
       </v-layout>
     </v-container>  
@@ -23,13 +23,19 @@
 
 <script>
 import Player from "../components/Player";
+import { mapState } from 'vuex';
 export default {
   name: "Dashboard",
   components: {
     Player
   },
   data() {
-    return {};
+    return {
+
+    };
+  },
+  computed: {
+    ...mapState(['colorMap'])
   }
 };
 </script>

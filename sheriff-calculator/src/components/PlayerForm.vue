@@ -1,18 +1,18 @@
 <template>
   <v-layout row justify-center>
-     <v-btn color="primary" dark @click.stop="dialog = true">Open Dialog</v-btn>
+     <v-btn color="primary" dark @click.stop="openNewPlayerDialog()" >Open Dialog</v-btn>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
           <span
             v-if="!editing"
             class="headline"
-            :style="{color: playerColors[players.length]}"
+            :style="{color: currentColor}"
           >{{ name }}</span>
           <v-flex xs10 sm6 md4 v-else>
             <v-text-field
               class="headline"
-              :style="{color: playerColors[players.length]}"
+              :style="{color: currentColor}"
               v-model="name"
             ></v-text-field>
           </v-flex>
@@ -24,7 +24,7 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm6 md4>
-                <v-text-field label="Apples*" v-model="apple" type="number" min="0" required></v-text-field>
+                <v-text-field label="Apples*" v-model="apple" :color=currentColor type="number" min="0" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
                 <v-text-field
@@ -100,14 +100,14 @@
                         slot-scope="{ hover }"
                         v-if="hover"
                         class="badge white--text"
-                        :style="{backgroundColor: playerColors[players.length]}"
+                        :style="{backgroundColor: currentColor}"
                         @click.stop="addContraband(data.item)">
                         <span>&#43;</span>
                         </v-avatar>
                         <v-avatar
                         v-else
                           class="badge white--text"
-                          :style="{backgroundColor: playerColors[players.length]}"
+                          :style="{backgroundColor: currentColor}"
                           v-text="contrabands[data.item]"
                           @click.stop="addContraband(data.item)"
                         ></v-avatar>
@@ -125,8 +125,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat @click="dialog = false" :style="{color: playerColors[players.length]}">Close</v-btn>
-          <v-btn flat @click="dialog = false" :style="{color: playerColors[players.length]}">Save</v-btn>
+          <v-btn flat @click="dialog = false" :style="{color: currentColor}">Close</v-btn>
+          <v-btn flat @click="dialog = false" :style="{color: currentColor}">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -134,6 +134,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -153,15 +154,14 @@ export default {
          "Silk": 0,   
       },
       items: ["Pepper", "Silk", "Crossbow", "Blooming bread"],
-      players: ['a'],
-      playerColors: {
-        0: "blue",
-        1: "green",
-        2: "purple",
-        3: "goldenrod",
-        4: "crimson"
-      }
+      players: ['a', 2, 3, 4],
     };
+  },
+  computed: {
+     ...mapState(['colorMap']),
+     currentColor() {
+        return this.colorMap[this.players.length];
+     }
   },
   methods: {
     toggleEdit() {
@@ -179,6 +179,13 @@ export default {
           this.contrabands[data] = 1
        }
        console.log('contrabando', this.contrabands);
+    },
+    openNewPlayerDialog() {
+       if (this.players.length < 5) {
+          this.dialog = true;
+       } else {
+          alert('Max numbers of players reached');
+       }
     }
   }
 };
