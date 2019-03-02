@@ -18,6 +18,9 @@
         <Player :color="colorMap[4]"/>
       </v-flex> -->
       </v-layout>
+      <v-layout justify-center row v-if="players.length" style="margin-top: 5%;">
+        <v-btn color="success"> Calculate Score <v-icon right> casino</v-icon></v-btn>
+      </v-layout>
     </v-container>  
 </template>
 

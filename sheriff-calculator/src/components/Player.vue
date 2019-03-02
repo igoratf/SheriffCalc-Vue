@@ -78,7 +78,6 @@ export default {
 .player {
   margin-top: 10%;
   max-width: 350px;
-  padding: 8px;
 }
 
 .title {

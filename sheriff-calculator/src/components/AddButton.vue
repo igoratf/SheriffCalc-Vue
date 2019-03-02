@@ -1,6 +1,6 @@
 <template>
-  <div class="btn-add-container">
-    <v-tooltip top>
+  <div>
+    <v-tooltip left>
       <template v-slot:activator="{ on }">
         <v-btn class="btn-add" fab dark color="indigo" v-on="on" @click="openDialog()">
           <v-icon dark>add</v-icon>
@@ -22,16 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.btn-add {
-  float: right;
-}
 
-.btn-add-container {
-  padding: 8px;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
 </style>
 
 

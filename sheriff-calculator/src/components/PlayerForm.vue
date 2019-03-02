@@ -221,7 +221,8 @@ export default {
         chicken: this.chicken,
         contrabandScore: this.contrabandScore,
         contrabands: this.selectedContrabands,
-        coin: this.coin
+        coin: this.coin,
+        score: 0
       };
       this.$store.commit('addPlayer', player);
       this.resetForm();
