@@ -1,37 +1,25 @@
 <template>
   <v-app>
-    <v-container grid-list-md text-ms-center>
-      <v-layout>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      <v-flex xs4>
-        <Player />
-      </v-flex>
-      </v-layout>
-    </v-container>  
+    <Toolbar />
+
+    <v-container grid-list-md text-ms-center fluid>
+      <router-view />
+    </v-container>
+
+    <AddButton />
+    
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
-import Baseline from "./views/Baseline";
-import Dashboard from "./views/Dashboard";
-import Player from "./components/Player";
+import Toolbar from "./components/Toolbar";
+import AddButton from "./components/AddButton";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
-    Baseline,
-    Dashboard,
-    Player
+    Toolbar,
+    AddButton
   },
   data() {
     return {
@@ -40,3 +28,7 @@ export default {
   }
 };
 </script>
+
+<style>
+</style>
+
