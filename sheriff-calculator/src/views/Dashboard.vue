@@ -1,5 +1,5 @@
 <template>
-   <v-container>
+   <v-container fluid>
       <v-layout justify-center row wrap>
       <v-flex shrink>
         <Player :color="colorMap[0]"/>
