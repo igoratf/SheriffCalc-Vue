@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <!-- <div class="header">
-      <h1>Sheriff of Nottingham</h1>
-    </div>-->
+    <router-view />
     <Toolbar />
     <v-container grid-list-md text-ms-center fluid>
       <Dashboard/>

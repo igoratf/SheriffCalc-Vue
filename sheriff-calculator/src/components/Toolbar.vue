@@ -1,5 +1,5 @@
 <template>
-   <v-toolbar color="blue" dark>
+   <v-toolbar color="indigo" dark>
       <v-toolbar-side-icon></v-toolbar-side-icon>
       <v-toolbar-title>Sheriff of Nottingham Score Calculator</v-toolbar-title>
       <v-spacer></v-spacer>
