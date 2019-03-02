@@ -95,17 +95,18 @@
                   chips
                   multiple
                   deletable-chips
-                  hint="Press the selected contraband number to increase quantity"
+                  hint="Press the selected contraband number to increment quantity"
+                  persistent-hint
                   label="Contrabands"
                 >
                   <template v-slot:selection="data">
-                    <v-chip
+                    <v-chip close
                       :key="JSON.stringify(data.item)"
                       :selected="data.selected"
                       :disabled="data.disabled"
                       class="v-chip--select-multi"
                       @click.stop="data.parent.selectedIndex = data.index"
-                      @input="data.parent.selectItem(data.item)"
+                      @input="removeContraband(data.item)"
                     >
                       <v-hover>
                         <v-avatar
@@ -122,9 +123,14 @@
                           class="badge white--text"
                           :style="{backgroundColor: currentColor}"
                           @click.stop="addContraband(data.item)"
-                        ><span>{{data.item.quantity}}</span></v-avatar>
+                        ><span>{{data.item.quantity}}</span></v-avatar> 
                       </v-hover>
+
                       {{ data.item.name }}
+
+                       <!-- <div class="v-chip__close">
+                          <v-icon>cancel</v-icon>
+                      </div> -->
                     </v-chip>
                   </template>
                 </v-combobox>
@@ -184,11 +190,20 @@ export default {
     },
     addContraband(item) {
       console.log(item);
-      this.contrabands.forEach(element => {
+      this.selectedContrabands.forEach(element => {
          if (element.name === item.name) {
             element.quantity++;
          }
       })
+    },
+    removeContraband(item) {
+      for (let i=0; i<this.selectedContrabands.length; i++) {
+        let current = this.selectedContrabands[i];
+        if (current.name === item.name) {
+          current.quantity = 0;
+          return this.selectedContrabands.splice(i, 1);
+        }
+      }
     },
     openNewPlayerDialog() {
       if (this.players.length < 5) {
