@@ -221,13 +221,13 @@ export default {
     addNewPlayer() {
       var player = {
         name: this.name,
-        apple: this.apple,
-        bread: this.bread,
-        cheese: this.cheese,
-        chicken: this.chicken,
-        contrabandScore: this.contrabandScore,
+        apple: Number(this.apple),
+        bread: Number(this.bread),
+        cheese: Number(this.cheese),
+        chicken: Number(this.chicken),
+        contrabandScore: Number(this.contrabandScore),
         contrabands: this.selectedContrabands,
-        coin: this.coin,
+        coin: Number(this.coin),
         score: 0
       };
       this.$store.commit('addPlayer', player);

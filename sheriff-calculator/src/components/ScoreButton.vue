@@ -35,12 +35,16 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
    name: "ScoreButton",
    data() {
       return {
          dialog: false
       }
+   },
+   methods: {
+      ...mapMutations(['calculateScore'])
    }
 }
 </script>

@@ -12,7 +12,7 @@ export default new Vuex.Store({
       1: "rgb(0,128,0)",
       2: "rgb(128,0,128)",
       3: "rgb(218,165,32)",
-      4: "rgb(178,34,34)", 
+      4: "rgb(178,34,34)",
     },
     playerDialog: false
   },
@@ -36,7 +36,7 @@ export default new Vuex.Store({
       console.log(this.state.players);
     },
     deletePlayer(state, id) {
-      for (let i=0; i<this.state.players.length; i++) {
+      for (let i = 0; i < this.state.players.length; i++) {
         let player = this.state.players[i];
         if (player.id === id) {
           this.state.players.splice(i, 1);
@@ -44,26 +44,29 @@ export default new Vuex.Store({
       }
     },
     calculateScore() {
-      const appleScore = 3;
-      const breadScore = 4;
-      const cheeseScore = 4;
-      const chickenScore = 5;
-      for (let i=0; i<this.state.players.length; i++) {
-        let player = this.state.players[i];
-        player.score += appleScore * player.apple;
-        player.score += breadScore * player.bread;
-        player.score += cheeseScore * player.cheese;
-        player.score += chickenScore * player.chicken;
-        player.score += player.contrabandScore;
-        player.score += player.coin;
+      if (this.state.players.length) {
+        const appleScore = 2;
+        const breadScore = 3;
+        const cheeseScore = 3;
+        const chickenScore = 4;
+        for (let i = 0; i < this.state.players.length; i++) {
+          let player = this.state.players[i];
+          player.score += appleScore * player.apple;
+          player.score += breadScore * player.bread;
+          player.score += cheeseScore * player.cheese;
+          player.score += chickenScore * player.chicken;
+          player.score += player.contrabandScore;
+          player.score += player.coin;
+        }
+
+        let sortApple = this.state.players.concat().sort((a, b) => {
+          if (a.apple >= b.apple) return -1;
+          else return 1;
+        })
+
+        console.log(sortApple);
       }
 
-      let sortApple = this.state.players.sort((a,b) => {
-        if (a.apple < b.apple) return -1;
-        else return 1;
-      });
-
-      console.log(sortApple);
     }
   },
   actions: {
