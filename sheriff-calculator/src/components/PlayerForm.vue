@@ -99,13 +99,15 @@
                         <v-avatar
                         slot-scope="{ hover }"
                         v-if="hover"
-                        class="badge indigo white--text"
+                        class="badge white--text"
+                        :style="{backgroundColor: playerColors[players.length]}"
                         @click.stop="addContraband(data.item)">
                         <span>&#43;</span>
                         </v-avatar>
                         <v-avatar
                         v-else
-                          class="badge indigo white--text"
+                          class="badge white--text"
+                          :style="{backgroundColor: playerColors[players.length]}"
                           v-text="contrabands[data.item]"
                           @click.stop="addContraband(data.item)"
                         ></v-avatar>
@@ -123,8 +125,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+          <v-btn flat @click="dialog = false" :style="{color: playerColors[players.length]}">Close</v-btn>
+          <v-btn flat @click="dialog = false" :style="{color: playerColors[players.length]}">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -151,7 +153,7 @@ export default {
          "Silk": 0,   
       },
       items: ["Pepper", "Silk", "Crossbow", "Blooming bread"],
-      players: [],
+      players: ['a'],
       playerColors: {
         0: "blue",
         1: "green",
