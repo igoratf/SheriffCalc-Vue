@@ -3,29 +3,30 @@
     <v-card hover>
       <v-card-title primary-title class="title" :style="{backgroundColor: color}">
         <div>
-          <h3 class="headline mb-0">Player 1</h3>
+          <h3 class="headline mb-0">{{ player.name }}</h3>
           <div>{{ card_text }}</div>
         </div>
       </v-card-title>
+      
       <v-card-text>
         <v-layout row wrap>
         <v-flex xs12 sm12 md6 lg6 xl6>
-          <p>Apple: 10</p>
+          <p>Apple: {{ player.apple }}</p>
         </v-flex>
         <v-flex xs12 sm12 md6 lg6 xl6>
-          <p>Cheese: 10</p>
+          <p>Cheese: {{ player.cheese }}</p>
         </v-flex>
         <v-flex xs12 sm12 md6 lg6 xl6>
-          <p>Bread: 10</p>
+          <p>Bread: {{ player.bread }}</p>
         </v-flex>
         <v-flex xs12 sm12 md6 lg6 xl6>
-          <p>Chicken: 10</p>
+          <p>Chicken: {{player.chicken}}</p>
         </v-flex>
         <v-flex xs12 sm12 md6 lg6 xl6>
-          <p>Contraband: 20</p>
+          <p>Contraband: {{player.contrabandScore}}</p>
         </v-flex>
         <v-flex xs12 sm12 md6 lg6 xl6>
-          <p>Coins: 50</p>
+          <p>Coins: {{player.coin}}</p>
         </v-flex>
         </v-layout>
 
@@ -45,21 +46,28 @@
       </v-card-text>
 
       <v-card-actions>
-        <!-- <v-btn flat color="orange">Edit</v-btn>
-        <v-btn flat color="orange">Explore</v-btn> -->
+        <v-btn flat color="error" @click="deletePlayer(player.id)">Delete</v-btn>
+        <!-- <v-btn flat color="orange">Explore</v-btn> -->
       </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 export default {
   data() {
     return {
       card_text: "Text"
     };
   },
-  props: ['color']
+  props: ['color', 'player'],
+  methods: {
+    ...mapMutations(['deletePlayer'])
+  },
+  mounted() {
+    console.log(this.player);
+  }
 };
 </script>
 
