@@ -30,6 +30,7 @@
                   label="Breads*"
                   v-model="bread"
                   type="number"
+                  :color="currentColor"
                   min="0"
                   hint="example of helper text only on focus"
                   required
@@ -39,6 +40,7 @@
                 <v-text-field
                   label="Cheeses*"
                   v-model="cheese"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -49,6 +51,7 @@
                 <v-text-field
                   label="Chickens*"
                   v-model="chicken"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -59,6 +62,7 @@
                 <v-text-field
                   label="Contrabands*"
                   v-model="contrabandScore"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -69,6 +73,7 @@
                 <v-text-field
                   label="Coins*"
                   v-model="coin"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -79,6 +84,7 @@
               <v-flex xs12>
                 <v-combobox
                   v-model="selectedContrabands"
+                  :color="currentColor"
                   :items="contrabands"
                   item-text="name"
                   item-value="name"
