@@ -8,7 +8,7 @@
 
     <div class="btn-add-container">
       <v-btn class="btn-add" fab dark color="indigo">
-      <v-icon dark>add</v-icon>
+      <v-icon dark >add</v-icon>
     </v-btn>
     </div>
     
