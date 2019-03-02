@@ -32,6 +32,7 @@
 
       </v-card-text>
       
+      <div class="footer">
       <hr>
       <v-card-text>
          <p style="color: orange;">
@@ -44,6 +45,7 @@
              <span style="float: right"> +10</span></strong>
           </p>
       </v-card-text>
+      </div>
 
       <v-card-actions>
         <v-btn flat color="error" @click="deletePlayer(player.id)">Delete</v-btn>
@@ -82,9 +84,5 @@ export default {
   color: white;
 }
 
-.container {
-   display: flex;
-   justify-content: space-around;
-}
 </style>
 

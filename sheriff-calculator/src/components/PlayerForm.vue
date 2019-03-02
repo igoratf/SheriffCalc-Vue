@@ -30,6 +30,7 @@
                   label="Breads*"
                   v-model="bread"
                   type="number"
+                  :color="currentColor"
                   min="0"
                   hint="example of helper text only on focus"
                   required
@@ -39,6 +40,7 @@
                 <v-text-field
                   label="Cheeses*"
                   v-model="cheese"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -49,6 +51,7 @@
                 <v-text-field
                   label="Chickens*"
                   v-model="chicken"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -59,6 +62,7 @@
                 <v-text-field
                   label="Contrabands*"
                   v-model="contrabandScore"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -69,6 +73,7 @@
                 <v-text-field
                   label="Coins*"
                   v-model="coin"
+                  :color="currentColor"
                   type="number"
                   min="0"
                   hint="example of helper text only on focus"
@@ -79,6 +84,7 @@
               <v-flex xs12>
                 <v-combobox
                   v-model="selectedContrabands"
+                  :color="currentColor"
                   :items="contrabands"
                   item-text="name"
                   item-value="name"
@@ -148,15 +154,13 @@ export default {
   name: "PlayerForm",
   data() {
     return {
-      quantity: 0,
-      name: "New Player",
+      name: "New player",
       editing: false,
       apple: 0,
       bread: 0,
       cheese: 0,
       chicken: 0,
       contrabandScore: 0,
-      selectedItem: [],
       coin: 0,
       selectedContrabands: [],
       contrabands: [{"name": "Pepper", "quantity": 0}, {"name": "Silk", "quantity": 1}]
@@ -204,6 +208,16 @@ export default {
         alert("Max numbers of players reached");
       }
     },
+    resetForm() {
+      this.apple = 0;
+      this.bread = 0;
+      this.cheese = 0;
+      this.chicken = 0;
+      this.coin = 0;
+      this.contrabandScore = 0;
+      this.name = "New player";
+      this.editing = false;
+    },
     addNewPlayer() {
       var player = {
         name: this.name,
@@ -213,9 +227,11 @@ export default {
         chicken: this.chicken,
         contrabandScore: this.contrabandScore,
         contrabands: this.selectedContrabands,
-        coin: this.coin
+        coin: this.coin,
+        score: 0
       };
       this.$store.commit('addPlayer', player);
+      this.resetForm();
       this.closeDialog();
     }
   },

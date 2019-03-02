@@ -42,6 +42,28 @@ export default new Vuex.Store({
           this.state.players.splice(i, 1);
         }
       }
+    },
+    calculateScore() {
+      const appleScore = 3;
+      const breadScore = 4;
+      const cheeseScore = 4;
+      const chickenScore = 5;
+      for (let i=0; i<this.state.players.length; i++) {
+        let player = this.state.players[i];
+        player.score += appleScore * player.apple;
+        player.score += breadScore * player.bread;
+        player.score += cheeseScore * player.cheese;
+        player.score += chickenScore * player.chicken;
+        player.score += player.contrabandScore;
+        player.score += player.coin;
+      }
+
+      let sortApple = this.state.players.sort((a,b) => {
+        if (a.apple < b.apple) return -1;
+        else return 1;
+      });
+
+      console.log(sortApple);
     }
   },
   actions: {
