@@ -148,15 +148,13 @@ export default {
   name: "PlayerForm",
   data() {
     return {
-      quantity: 0,
-      name: "New Player",
+      name: "New player",
       editing: false,
       apple: 0,
       bread: 0,
       cheese: 0,
       chicken: 0,
       contrabandScore: 0,
-      selectedItem: [],
       coin: 0,
       selectedContrabands: [],
       contrabands: [{"name": "Pepper", "quantity": 0}, {"name": "Silk", "quantity": 1}]
@@ -204,6 +202,16 @@ export default {
         alert("Max numbers of players reached");
       }
     },
+    resetForm() {
+      this.apple = 0;
+      this.bread = 0;
+      this.cheese = 0;
+      this.chicken = 0;
+      this.coin = 0;
+      this.contrabandScore = 0;
+      this.name = "New player";
+      this.editing = false;
+    },
     addNewPlayer() {
       var player = {
         name: this.name,
@@ -216,6 +224,7 @@ export default {
         coin: this.coin
       };
       this.$store.commit('addPlayer', player);
+      this.resetForm();
       this.closeDialog();
     }
   },
