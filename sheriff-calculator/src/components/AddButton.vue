@@ -27,10 +27,10 @@ export default {
 }
 
 .btn-add-container {
-  width: 100%;
   padding: 8px;
   position: fixed;
   bottom: 0;
+  right: 0;
 }
 </style>
 
