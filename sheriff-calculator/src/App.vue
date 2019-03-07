@@ -1,21 +1,8 @@
 <template>
-  <v-app>
-    <Toolbar/>
+  <v-app id="app">
+    <!-- <Toolbar/> -->
+    <router-view/>
 
-    <v-container grid-list-md text-ms-center fluid>
-      <router-view/>
-    </v-container>
-
-    <!-- <AddButton /> -->
-    <div class="btn-fixed-container">
-      <div>
-        <AddButton/>
-      </div>
-
-      <div>
-        <ScoreButton/>
-      </div>
-    </div>
   </v-app>
 </template>
 
@@ -40,6 +27,9 @@ export default {
 </script>
 
 <style>
+#app {
+  background-color: #f5f5f5;
+}
 .btn-fixed-container {
   position: fixed;
   bottom: 0;
