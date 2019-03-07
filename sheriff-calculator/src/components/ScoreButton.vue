@@ -35,13 +35,20 @@
 </template>
 
 <script>
+import { mapMutations, mapState, mapActions } from "vuex";
 export default {
-   name: "ScoreButton",
-   data() {
-      return {
-         dialog: false
-      }
-   }
-}
+  name: "ScoreButton",
+  data() {
+    return {
+      dialog: false
+    };
+  },
+  computed: {
+    ...mapState(['players'])
+  },
+  methods: {
+    ...mapActions(['calculateScore'])
+  }
+};
 </script>
 

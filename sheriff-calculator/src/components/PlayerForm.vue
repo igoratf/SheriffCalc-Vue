@@ -1,6 +1,5 @@
 <template>
   <v-layout row justify-center>
-    <!-- <v-btn color="primary" dark @click.stop="openNewPlayerDialog()">Open Dialog</v-btn> -->
     <v-dialog v-model="playerDialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
@@ -22,6 +21,7 @@
                   :color="currentColor"
                   type="number"
                   min="0"
+                  max="99"
                   required
                 ></v-text-field>
               </v-flex>
@@ -32,6 +32,7 @@
                   type="number"
                   :color="currentColor"
                   min="0"
+                  max="99"
                   hint="example of helper text only on focus"
                   required
                 ></v-text-field>
@@ -43,6 +44,7 @@
                   :color="currentColor"
                   type="number"
                   min="0"
+                  max="99"
                   hint="example of helper text only on focus"
                   required
                 ></v-text-field>
@@ -54,6 +56,7 @@
                   :color="currentColor"
                   type="number"
                   min="0"
+                  max="99"
                   hint="example of helper text only on focus"
                   required
                 ></v-text-field>
@@ -65,6 +68,7 @@
                   :color="currentColor"
                   type="number"
                   min="0"
+                  max="99"
                   hint="example of helper text only on focus"
                   required
                 ></v-text-field>
@@ -76,6 +80,7 @@
                   :color="currentColor"
                   type="number"
                   min="0"
+                  max="99"
                   hint="example of helper text only on focus"
                   required
                 ></v-text-field>
@@ -98,7 +103,8 @@
                   label="Contrabands"
                 >
                   <template v-slot:selection="data">
-                    <v-chip close
+                    <v-chip
+                      close
                       :key="JSON.stringify(data.item)"
                       :selected="data.selected"
                       :disabled="data.disabled"
@@ -121,14 +127,15 @@
                           class="badge white--text"
                           :style="{backgroundColor: currentColor}"
                           @click.stop="addContraband(data.item)"
-                        ><span>{{data.item.quantity}}</span></v-avatar> 
+                        >
+                          <span>{{data.item.quantity}}</span>
+                        </v-avatar>
                       </v-hover>
 
                       {{ data.item.name }}
-
-                       <!-- <div class="v-chip__close">
+                      <!-- <div class="v-chip__close">
                           <v-icon>cancel</v-icon>
-                      </div> -->
+                      </div>-->
                     </v-chip>
                   </template>
                 </v-combobox>
@@ -163,7 +170,10 @@ export default {
       contrabandScore: 0,
       coin: 0,
       selectedContrabands: [],
-      contrabands: [{"name": "Pepper", "quantity": 0}, {"name": "Silk", "quantity": 1}]
+      contrabands: [
+        { name: "Pepper", quantity: 0 },
+        { name: "Silk", quantity: 1 }
+      ]
     };
   },
   computed: {
@@ -187,13 +197,13 @@ export default {
     addContraband(item) {
       console.log(item);
       this.selectedContrabands.forEach(element => {
-         if (element.name === item.name) {
-            element.quantity++;
-         }
-      })
+        if (element.name === item.name) {
+          element.quantity++;
+        }
+      });
     },
     removeContraband(item) {
-      for (let i=0; i<this.selectedContrabands.length; i++) {
+      for (let i = 0; i < this.selectedContrabands.length; i++) {
         let current = this.selectedContrabands[i];
         if (current.name === item.name) {
           current.quantity = 0;
@@ -221,16 +231,16 @@ export default {
     addNewPlayer() {
       var player = {
         name: this.name,
-        apple: this.apple,
-        bread: this.bread,
-        cheese: this.cheese,
-        chicken: this.chicken,
-        contrabandScore: this.contrabandScore,
+        apple: Number(this.apple),
+        bread: Number(this.bread),
+        cheese: Number(this.cheese),
+        chicken: Number(this.chicken),
+        contrabandScore: Number(this.contrabandScore),
         contrabands: this.selectedContrabands,
-        coin: this.coin,
+        coin: Number(this.coin),
         score: 0
       };
-      this.$store.commit('addPlayer', player);
+      this.$store.commit("addPlayer", player);
       this.resetForm();
       this.closeDialog();
     }
@@ -244,7 +254,7 @@ export default {
 <style scoped>
 .badge:hover {
   cursor: pointer;
-  content: "-"!important;
+  content: "-" !important;
 }
 </style>
 

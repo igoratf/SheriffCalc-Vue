@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import PlayerForm from './components/PlayerForm';
 import Dashboard from "./views/Dashboard";
+import Home from "./views/Home";
 
 Vue.use(Router);
 
@@ -17,7 +18,7 @@ export default new Router({
     {
       path: '/',
       name: 'test',
-      component: PlayerForm
+      component: Home
     }
   ],
 });

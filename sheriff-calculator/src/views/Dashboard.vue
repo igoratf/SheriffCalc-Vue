@@ -1,44 +1,49 @@
 <template>
-   <v-container fluid>
-     <PlayerForm />
+  <div>
+    <Toolbar/>
+    <v-container grid-list-md text-ms-center fluid>
+      <PlayerForm/>
       <v-layout justify-center row wrap>
-      <v-flex shrink v-for="(player, index) in players" :key="index">
-        <Player :color="colorMap[index]" :player="player"/>
-      </v-flex>
-      <!-- <v-flex shrink>
-        <Player :color="colorMap[1]"/>
-      </v-flex>
-       <v-flex  shrink>
-        <Player :color="colorMap[2]"/>
-      </v-flex>
-      <v-flex shrink>
-        <Player :color="colorMap[3]"/>
-      </v-flex>
-      <v-flex shrink>
-        <Player :color="colorMap[4]"/>
-      </v-flex> -->
+        <v-flex shrink v-for="(player, index) in players" :key="index">
+          <Player :color="colorMap[index]" :player="player"/>
+        </v-flex>
       </v-layout>
-    </v-container>  
+    </v-container>
+
+    <div class="btn-fixed-container">
+      <div>
+        <AddButton/>
+      </div>
+
+      <div>
+        <ScoreButton/>
+      </div>
+    </div>
+  </div>
 </template>
 
 
 <script>
 import Player from "../components/Player";
 import PlayerForm from "../components/PlayerForm";
-import { mapState } from 'vuex';
+import Toolbar from "../components/Toolbar";
+import AddButton from "../components/AddButton";
+import ScoreButton from "../components/ScoreButton";
+import { mapState } from "vuex";
 export default {
   name: "Dashboard",
   components: {
     Player,
-    PlayerForm
+    PlayerForm,
+    Toolbar,
+    AddButton, 
+    ScoreButton
   },
   data() {
-    return {
-
-    };
+    return {};
   },
   computed: {
-    ...mapState(['colorMap', 'players'])
+    ...mapState(["colorMap", "players"])
   },
   mounted() {
     console.log(this.players);
