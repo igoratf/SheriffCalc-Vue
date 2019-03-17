@@ -11,7 +11,7 @@ export default new Vuex.Store({
   state: {
     players: [],
     colorMap: {
-      0: "rgb(0,0,255)",
+      0: "#3e51b5",
       1: "rgb(0,128,0)",
       2: "rgb(128,0,128)",
       3: "rgb(218,165,32)",

@@ -30,6 +30,16 @@ export default {
 #app {
   background-color: #f5f5f5;
 }
+
+.app-component, .v-list__tile__title {
+  font-family: 'Kaushan Script', cursive!important; 
+}
+
+.v-input .v-label,
+.v-messages__message {
+  font-size: 1.3em;
+}
+
 .btn-fixed-container {
   position: fixed;
   bottom: 0;

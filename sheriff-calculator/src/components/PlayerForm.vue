@@ -1,7 +1,7 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="playerDialog" persistent max-width="600px">
-      <v-card>
+      <v-card class="app-component">
         <v-card-title>
           <span v-if="!editing" class="headline" :style="{color: currentColor}">{{ name }}</span>
           <v-flex xs10 sm6 md4 v-else>
@@ -143,7 +143,7 @@
             </v-layout>
           </v-container>
 
-          <small>*indicates required field</small>
+          <span>*indicates required field</span>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -246,6 +246,10 @@ export default {
 .badge:hover {
   cursor: pointer;
   content: "-" !important;
+}
+
+.headline {
+  font-family: 'Kaushan Script', cursive!important;
 }
 </style>
 

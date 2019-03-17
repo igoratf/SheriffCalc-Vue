@@ -2,8 +2,8 @@
   <div>
     <div class="text-xs-center">
       <v-dialog v-model="dialog" width="500">
-        <v-card>
-          <v-card-title class="headline success white--text" primary-title>Calculate Score</v-card-title>
+        <v-card class="app-component" style="font-size: 1.25em">
+          <v-card-title class="headline success white--text">Calculate Score</v-card-title>
 
           <v-card-text>
             <p style="font-size: 1.25em">
@@ -24,7 +24,7 @@
 
     <v-tooltip left>
       <template v-slot:activator="{ on }">
-        <v-btn fab dark color="success" v-on="on" @click="dialog = true">
+        <v-btn fab dark style="background-color: forestgreen" v-on="on" @click="dialog = true">
           <v-icon>mdi-calculator</v-icon>
           <span class="mdi mdi-calculator"></span>
         </v-btn>
@@ -51,4 +51,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.headline {
+  font-family: 'Kaushan Script', cursive!important;
+}
+</style>
+
 

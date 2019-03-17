@@ -1,5 +1,5 @@
 <template>
-  <div class="player">
+  <div class="player app-component">
     <v-card hover>
       <v-card-title primary-title class="title" :style="{backgroundColor: color}">
         <div>
@@ -57,7 +57,7 @@
           </v-card-actions>
         </template>
 
-        <v-card>
+        <v-card class="app-component" style="font-size: 1.25em">
           <v-card-title   class="headline" :style="{color:color}"><strong>Delete player</strong></v-card-title>
           <v-card-text :style="{color:color}">Are you sure you want to delete this player? This action can't be undone.</v-card-text>
           <v-card-actions>
@@ -96,6 +96,10 @@ export default {
 .player {
   margin-top: 10%;
   max-width: 350px;
+}
+
+.headline {
+  font-family: 'Kaushan Script', cursive!important;
 }
 
 .title {
