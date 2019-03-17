@@ -24,7 +24,7 @@
 
     <v-tooltip left>
       <template v-slot:activator="{ on }">
-        <v-btn fab dark color="success" v-on="on" @click="dialog = true">
+        <v-btn fab dark style="background-color: forestgreen" v-on="on" @click="dialog = true">
           <v-icon>mdi-calculator</v-icon>
           <span class="mdi mdi-calculator"></span>
         </v-btn>

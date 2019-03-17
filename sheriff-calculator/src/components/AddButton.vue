@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-component">
     <v-tooltip left>
       <template v-slot:activator="{ on }">
         <v-btn class="btn-add" fab dark color="indigo" v-on="on" @click="openPlayerDialog()">

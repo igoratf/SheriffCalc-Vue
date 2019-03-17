@@ -1,5 +1,5 @@
 <template>
-   <div id="toolbar">
+   <div id="toolbar" class="app-component">
    
    
    <v-toolbar color="indigo" dark>

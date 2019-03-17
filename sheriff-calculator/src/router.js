@@ -16,9 +16,8 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: '/',
-      name: 'test',
-      component: Home
+      path: '*',
+      redirect: '/dashboard'
     }
   ],
 });
