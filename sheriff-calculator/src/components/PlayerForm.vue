@@ -156,7 +156,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
   name: "PlayerForm",
   data() {
@@ -178,12 +178,14 @@ export default {
   },
   computed: {
     ...mapState(["players", "playerDialog", "colorMap"]),
-    currentColor() {
-      return this.colorMap[this.players.length];
-    }
+    ...mapGetters(["currentColor"])
   },
   methods: {
-    ...mapMutations(["openDialog", "closeDialog"]),
+    ...mapMutations(["openPlayerDialog", "closePlayerDialog"]),
+    closeDialog() {
+      this.editing = false;
+      this.closePlayerDialog();      
+    },
     logObject(item) {
       console.log(item);
     },
@@ -211,13 +213,6 @@ export default {
         }
       }
     },
-    openNewPlayerDialog() {
-      if (this.players.length < 5) {
-        this.openDialog();
-      } else {
-        alert("Max numbers of players reached");
-      }
-    },
     resetForm() {
       this.apple = 0;
       this.bread = 0;
@@ -237,16 +232,12 @@ export default {
         chicken: Number(this.chicken),
         contrabandScore: Number(this.contrabandScore),
         contrabands: this.selectedContrabands,
-        coin: Number(this.coin),
-        score: 0
+        coin: Number(this.coin)
       };
-      this.$store.commit("addPlayer", player);
+      this.$store.dispatch("addNewPlayer", player);
       this.resetForm();
       this.closeDialog();
     }
-  },
-  watch: {
-    select(val) {}
   }
 };
 </script>

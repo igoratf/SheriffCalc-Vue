@@ -61,7 +61,7 @@
           <v-card-title   class="headline">Delete player</v-card-title>
           <v-card-text>Are you sure you want to delete this player? This action can't be undone.</v-card-text>
           <v-card-actions>
-            <v-btn color="green darken-1" flat @click="deletePlayer(player.id)">Yes</v-btn>
+            <v-btn color="green darken-1" flat @click="deleteNewPlayer(player.id)">Yes</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="error" flat @click="dialog = false">No</v-btn>
           </v-card-actions>
@@ -82,7 +82,11 @@ export default {
   },
   props: ["color", "player"],
   methods: {
-    ...mapMutations(["deletePlayer"])
+    ...mapMutations(["deletePlayer"]),
+    deleteNewPlayer(id) {
+      this.deletePlayer(id);
+      this.dialog = false;
+    }
   },
   mounted() {
     console.log(this.player);
