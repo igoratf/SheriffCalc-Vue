@@ -2,7 +2,8 @@
   <div>
     <Toolbar/>
     <v-container grid-list-md text-ms-center fluid>
-      <div class="headline-container">
+      <div class="headline-container" v-if="!players.length">
+        <!-- <img src="../assets/sheriff_of_nottingham.jpg"> -->
         <div class="title-container">
         <h1>Welcome to<br> Sheriff of Nottingham <br> Score Calculator</h1>
         </div>
