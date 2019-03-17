@@ -10,7 +10,6 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     players: [],
-    id: 0,
     colorMap: {
       0: "rgb(0,0,255)",
       1: "rgb(0,128,0)",
@@ -24,6 +23,10 @@ export default new Vuex.Store({
     currentColor: state => state.colorMap[state.players.length]
   },
   mutations: {
+    newGame() {
+      this.state.players = [],
+      this.state.playerDialog = false;
+    },
     openPlayerDialog() {
       if (this.state.players.length < 5) {
         this.state.playerDialog = true;
