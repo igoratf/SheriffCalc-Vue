@@ -3,9 +3,9 @@
     <Toolbar/>
     <v-container grid-list-md text-ms-center fluid>
       <div class="headline-container">
-        <h1>Welcome to</h1>
-        <br>
-        <h1>Sheriff of Nottingham</h1>
+        <div class="title-container">
+        <h1>Welcome to<br> Sheriff of Nottingham <br> Score Calculator</h1>
+        </div>
         <br>
         <br>
         <h2 style="color: darkgoldenrod">Please insert new players to calculate a game score</h2>
@@ -65,6 +65,14 @@ export default {
   font-weight: bolder;
   margin-top: 10%;
   font-family: 'Kaushan Script', cursive;
+}
+.title-container {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  max-width: 700px;
 }
 
 h1 {
