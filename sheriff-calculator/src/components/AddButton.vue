@@ -2,7 +2,7 @@
   <div>
     <v-tooltip left>
       <template v-slot:activator="{ on }">
-        <v-btn class="btn-add" fab dark color="indigo" v-on="on" @click="openDialog()">
+        <v-btn class="btn-add" fab dark color="indigo" v-on="on" @click="openPlayerDialog()">
           <v-icon dark>add</v-icon>
         </v-btn>
       </template>
@@ -16,7 +16,7 @@
 import { mapState, mapMutations } from "vuex";
 export default {
   methods: {
-    ...mapMutations(["openDialog"])
+    ...mapMutations(["openPlayerDialog"])
   }
 };
 </script>

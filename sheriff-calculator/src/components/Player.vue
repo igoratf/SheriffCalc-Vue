@@ -4,7 +4,7 @@
       <v-card-title primary-title class="title" :style="{backgroundColor: color}">
         <div>
           <h3 class="headline mb-0">{{ player.name }}</h3>
-          <div>{{ card_text }}</div>
+          <div>{{ subtitle }}</div>
         </div>
       </v-card-title>
 
@@ -58,10 +58,10 @@
         </template>
 
         <v-card>
-          <v-card-title   class="headline">Delete player</v-card-title>
-          <v-card-text>Are you sure you want to delete this player? This action can't be undone.</v-card-text>
+          <v-card-title   class="headline" :style="{color:color}"><strong>Delete player</strong></v-card-title>
+          <v-card-text :style="{color:color}">Are you sure you want to delete this player? This action can't be undone.</v-card-text>
           <v-card-actions>
-            <v-btn color="green darken-1" flat @click="deletePlayer(player.id)">Yes</v-btn>
+            <v-btn color="green darken-1" flat @click="deleteNewPlayer(player.id)">Yes</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="error" flat @click="dialog = false">No</v-btn>
           </v-card-actions>
@@ -72,21 +72,22 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       dialog: false,
-      card_text: "Text"
+      subtitle: ''
     };
   },
-  props: ["color", "player"],
+  props: ["color", "player"],  
   methods: {
-    ...mapMutations(["deletePlayer"])
+    ...mapActions(["deletePlayer"]),
+    deleteNewPlayer(id) {
+      this.deletePlayer(id);
+      this.dialog = false;
+    }
   },
-  mounted() {
-    console.log(this.player);
-  }
 };
 </script>
 

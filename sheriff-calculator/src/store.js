@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     players: [],
-    id: 0,
     colorMap: {
       0: "rgb(0,0,255)",
       1: "rgb(0,128,0)",
@@ -16,20 +19,26 @@ export default new Vuex.Store({
     },
     playerDialog: false
   },
+  getters: {
+    currentColor: state => state.colorMap[state.players.length]
+  },
   mutations: {
-    openDialog() {
+    newGame() {
+      this.state.players = [],
+      this.state.playerDialog = false;
+    },
+    openPlayerDialog() {
       if (this.state.players.length < 5) {
         this.state.playerDialog = true;
       } else {
         alert('Invalid number of players');
       }
     },
-    closeDialog() {
+    closePlayerDialog() {
       this.state.playerDialog = false;
     },
     addPlayer(state, player) {
       if (player) {
-        player.id = this.state.id++;
         this.state.players.push(player);
       }
     },
@@ -103,6 +112,24 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    addNewPlayer({commit}, player) {
+      axios.post('/player', player)
+      .then((res) => {
+        if (res.data.id) {
+          player.id = res.data.id;
+          console.log(player);
+          commit('addPlayer', player)
+        } else {
+          console.log('error registering: player has no id');
+        }
+      })
+      .catch(err => console.log(err));
+    },
+    deletePlayer({commit}, id) {
+      axios.delete('/player', {data: {id: id}})
+      .then((res) => commit('deletePlayer', id))
+      .catch(err => console.log(err));
+    },
     calculateScore({commit}) {
       if (this.state.players.length) {
         const appleScore = 2;
