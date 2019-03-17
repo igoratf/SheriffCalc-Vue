@@ -132,29 +132,11 @@ export default new Vuex.Store({
     },
     calculateScore({commit}) {
       if (this.state.players.length) {
-        const appleScore = 2;
-        const breadScore = 3;
-        const cheeseScore = 3;
-        const chickenScore = 4;
-        for (let i = 0; i < this.state.players.length; i++) {
-          let player = this.state.players[i];
-          let score = 0;
-          score += appleScore * player.apple;
-          score += breadScore * player.bread;
-          score += cheeseScore * player.cheese;
-          score += chickenScore * player.chicken;
-          score += player.contrabandScore;
-          score += player.coin;
-          player.score = score;
-        }
-
-
-        commit('calculateKingAndQueen', "apple");
-        commit('calculateKingAndQueen', "bread");
-        commit('calculateKingAndQueen', "cheese");
-        commit('calculateKingAndQueen', "chicken");
-
-        console.log(this.state.players);
+        let playerIds = this.state.players.map(player => player.id);
+        console.log('player Ids', playerIds);
+        axios.post('/score', playerIds)
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
       }
     },
   },
