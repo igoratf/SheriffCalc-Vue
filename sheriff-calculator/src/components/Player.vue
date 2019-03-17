@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -82,7 +82,7 @@ export default {
   },
   props: ["color", "player"],
   methods: {
-    ...mapMutations(["deletePlayer"]),
+    ...mapActions(["deletePlayer"]),
     deleteNewPlayer(id) {
       this.deletePlayer(id);
       this.dialog = false;

@@ -123,7 +123,7 @@ export default new Vuex.Store({
       .catch(err => console.log(err));
     },
     deletePlayer({commit}, id) {
-      axios.delete('/player', id)
+      axios.delete('/player', {data: {id: id}})
       .then((res) => commit('deletePlayer', id))
       .catch(err => console.log(err));
     },
