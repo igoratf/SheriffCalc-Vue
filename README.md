@@ -9,6 +9,9 @@ You can also start a new game and access the player ranking in the toolbar.
 
 
 
+Whenever you access the deployment link, it may take some time to respond due to Heroku's sleeping behavior (where the backend remains). Please, wait a moment and try again to see it working.
+
+
 
 All rights reserved.
 
