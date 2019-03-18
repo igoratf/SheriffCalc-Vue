@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dashboard">
     <Toolbar/>
     <v-container grid-list-md text-ms-center fluid>
       <div class="headline-container" v-if="!players.length">

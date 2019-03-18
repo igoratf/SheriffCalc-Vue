@@ -17,7 +17,8 @@ export default new Vuex.Store({
       3: "rgb(218,165,32)",
       4: "rgb(178,34,34)",
     },
-    playerDialog: false
+    playerDialog: false,
+    playerRanking: [],
   },
   getters: {
     currentColor: state => state.colorMap[state.players.length]
@@ -55,6 +56,9 @@ export default new Vuex.Store({
           this.state.players.splice(i, 1);
         }
       }
+    },
+    setPlayerRanking(state, players) {
+      state.playerRanking = players;
     },
     calculateKingAndQueen(state, resource) {
       console.log(resource);
@@ -162,5 +166,10 @@ export default new Vuex.Store({
         .catch(err => console.log(err));
       }
     },
+    getPlayerRanking({commit}) {
+      axios.get('/ranking')
+      .then((res) => commit('setPlayerRanking', res.data))
+      .catch(err => console.log(err));
+    }
   },
 });
