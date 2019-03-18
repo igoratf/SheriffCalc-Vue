@@ -7,3 +7,8 @@ Sheriff of Nottingham Calculator is a web application designed to calculate the 
 In order to calculate a game score, you must add new players and press the calculate score button.
 You can also start a new game and access the player ranking in the toolbar.
 
+The backend implementation is available at: https://github.com/igoratf/SheriffCalculator-API
+
+
+All rights reserved.
+
