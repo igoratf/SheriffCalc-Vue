@@ -4,7 +4,7 @@
    
    <v-toolbar color="indigo" dark>
       <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>Sheriff of Nottingham Score Calculator</v-toolbar-title>
+      <v-toolbar-title @click.stop="toDashBoard()" class="home">Sheriff of Nottingham Score Calculator</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
     <v-dialog v-model="dialog" persistent max-width="350">
@@ -24,7 +24,7 @@
       </v-card>
    </v-dialog>
         <!-- <v-btn flat>Link Two</v-btn> -->
-        <v-btn flat>Ranking</v-btn>
+        <v-btn flat @click.stop="toRanking()">Ranking</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -48,6 +48,12 @@ export default {
       startNewGame() {
          this.dialog = false;
          this.newGame();
+      },
+      toDashBoard() {
+         this.$router.replace('/dashboard');
+      },
+      toRanking() {
+         this.$router.replace('/ranking');
       }
    }
 }
@@ -56,6 +62,12 @@ export default {
 
 <style scoped>
 
+.home:hover {
+   cursor: pointer;
+   transform: scale(1.1);
+   transition: ease-in-out 0.4s;
+   color: gold;
+}
 </style>
 
 
