@@ -20,6 +20,6 @@ git commit -m 'deploy'
 # git push -f igoratf@github.com:igoratf/USERNAME.github.io.git master
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:igoratf/SheriffCalc-Vue.git master:gh-pages
+git push -f igoratf@github.com:igoratf/SheriffCalc-Vue.git master:gh-pages
 
 cd -
