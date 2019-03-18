@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 Vue.use(Vuex);
@@ -132,10 +132,10 @@ export default new Vuex.Store({
     },
     calculateScore({commit}) {
       if (this.state.players.length) {
-        let playerIds = this.state.players.map(player => player.id);
-        console.log('player Ids', playerIds);
-        axios.post('/score', playerIds)
-        .then(res => console.log(res))
+        let players_id = this.state.players.map(player => player.id);
+        console.log('player Ids', players_id);
+        axios.post('/score', {players_id: players_id})
+        .then(res => console.log(res.data))
         .catch(err => console.log(err));
       }
     },
