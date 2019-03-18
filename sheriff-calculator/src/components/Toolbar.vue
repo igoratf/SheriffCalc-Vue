@@ -6,7 +6,7 @@
       <v-toolbar-side-icon></v-toolbar-side-icon>
       <v-toolbar-title @click.stop="toDashBoard()" class="home">Sheriff of Nottingham Score Calculator</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items>
     <v-dialog v-model="dialog" persistent max-width="350">
 
          <template v-slot:activator="{ on }">
