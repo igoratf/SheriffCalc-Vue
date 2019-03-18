@@ -33,7 +33,6 @@
                   :color="currentColor"
                   min="0"
                   max="99"
-                  hint="example of helper text only on focus"
                   required
                 ></v-text-field>
               </v-flex>
@@ -45,7 +44,6 @@
                   type="number"
                   min="0"
                   max="99"
-                  hint="example of helper text only on focus"
                   required
                 ></v-text-field>
               </v-flex>
@@ -57,7 +55,6 @@
                   type="number"
                   min="0"
                   max="99"
-                  hint="example of helper text only on focus"
                   required
                 ></v-text-field>
               </v-flex>
@@ -69,7 +66,7 @@
                   type="number"
                   min="0"
                   max="99"
-                  hint="example of helper text only on focus"
+                  hint="if a contraband is not in the list, add the score here"
                   required
                 ></v-text-field>
               </v-flex>
@@ -90,7 +87,7 @@
                 <v-combobox
                   v-model="selectedContrabands"
                   :color="currentColor"
-                  :items="contrabands"
+                  :items="contrabandList"
                   item-text="name"
                   item-value="name"
                   return-object
@@ -156,9 +153,14 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
+import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
 export default {
   name: "PlayerForm",
+  mounted() {
+    if (!this.contrabandList.length) {
+      this.getContrabands();
+    }
+  },
   data() {
     return {
       name: "New player",
@@ -177,27 +179,20 @@ export default {
     };
   },
   computed: {
-    ...mapState(["players", "playerDialog", "colorMap"]),
+    ...mapState(["players", "playerDialog", "colorMap", "contrabandList"]),
     ...mapGetters(["currentColor"])
   },
   methods: {
     ...mapMutations(["openPlayerDialog", "closePlayerDialog"]),
+    ...mapActions(["getContrabands"]),
     closeDialog() {
       this.editing = false;
       this.closePlayerDialog();      
     },
-    logObject(item) {
-      console.log(item);
-    },
     toggleEdit() {
       this.editing = !this.editing;
     },
-    increment(data) {
-      console.log(data);
-      this.quantity++;
-    },
     addContraband(item) {
-      console.log(item);
       this.selectedContrabands.forEach(element => {
         if (element.name === item.name) {
           element.quantity++;
