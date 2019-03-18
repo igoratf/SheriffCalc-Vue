@@ -13,7 +13,7 @@
       </div>
       <PlayerForm/>
       <v-layout justify-center row wrap>
-        <v-flex shrink v-for="(player, index) in players" :key="index">
+        <v-flex shrink v-for="(player, index) in players" :key="player.id">
           <Player :color="colorMap[index]" :player="player"/>
         </v-flex>
       </v-layout>

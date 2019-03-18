@@ -27,6 +27,12 @@ export default new Vuex.Store({
       this.state.players = [],
       this.state.playerDialog = false;
     },
+    updatePlayer(state, payload) {
+      let playerId = payload.id;
+      let player = this.state.players.find(player => player.id === playerId);
+
+      Vue.set(player, payload.property, payload.value);      
+    },
     openPlayerDialog() {
       if (this.state.players.length < 5) {
         this.state.playerDialog = true;
@@ -135,7 +141,24 @@ export default new Vuex.Store({
         let players_id = this.state.players.map(player => player.id);
         console.log('player Ids', players_id);
         axios.post('/score', {players_id: players_id})
-        .then(res => console.log(res.data))
+        .then(res => {
+          let response = res.data;
+          console.log(res.data);
+          this.state.players.map(player => {
+            commit('updatePlayer', {id: player.id, property: 'score', value: response[player.id].score})
+            let kings = [];
+            let queens = [];
+            if (response[player.id].kingOrQueen) {
+              kings = response[player.id].kingOrQueen.kings;
+              queens = response[player.id].kingOrQueen.queens;
+            }
+            commit('updatePlayer', {id: player.id, property: 'kings', value: kings});
+            commit('updatePlayer', {id: player.id, property: 'queens', value: queens});
+            
+          })
+
+          console.log('pós score', this.state.players);
+        })
         .catch(err => console.log(err));
       }
     },
