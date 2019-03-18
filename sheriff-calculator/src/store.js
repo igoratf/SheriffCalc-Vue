@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://sheriffcalculator-api.herokuapp.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 Vue.use(Vuex);
@@ -19,11 +19,15 @@ export default new Vuex.Store({
     },
     playerDialog: false,
     playerRanking: [],
+    contrabandList: []
   },
   getters: {
     currentColor: state => state.colorMap[state.players.length]
   },
   mutations: {
+    setContrabands(state, contrabands) {
+      this.state.contrabandList = contrabands;
+    },
     newGame() {
       this.state.players = [],
       this.state.playerDialog = false;
@@ -60,74 +64,18 @@ export default new Vuex.Store({
     setPlayerRanking(state, players) {
       state.playerRanking = players;
     },
-    calculateKingAndQueen(state, resource) {
-      console.log(resource);
-      let kings = [];
-      let queens = [];
-      let scoreTotal = 0;
-
-      let listByResource = this.state.players
-        .concat()
-        .sort((a, b) => (a[resource] > b[resource] ? -1 : 1));
-      kings.push(listByResource[0]);
-
-      for (let i = 1; i < listByResource.length; i++) {
-        let player = listByResource[i];
-        if (listByResource[i][resource] === kings[0][resource]) {
-          kings.push(player);
-          player["king"]
-            ? player["king"].push(resource)
-            : player["king"] = [resource];
-        } else if (
-          queens.length === 0 ||
-          listByResource[i][resource] === queens[0][resource]
-        ) {
-          queens.push(player);
-          player["queen"]
-            ? player["queen"].push(resource)
-            : player["queen"] = [resource];
-        }
-      }
-
-      let longest_list = Math.max(kings.length, queens.length);
-      let bonusKing = 0;
-      let bonusQueen = 0;
-
-      if (resource === "apple") {
-        bonusKing = 20;
-        bonusQueen = 10;
-      } else if (resource === "bread" || resource === "cheese") {
-        bonusKing = 15;
-        bonusQueen = 10;
-      } else {
-        bonusKing = 10;
-        bonusQueen = 5;
-      }
-
-      for (let i = 0; i < longest_list; i++) {
-        let kingPlayer = kings[i];
-        let queenPlayer = queens[i];
-      
-        if (kingPlayer) {
-          kingPlayer["score"] += bonusKing;
-          scoreTotal += bonusKing;
-        }
-        if (queenPlayer) {
-          queenPlayer["score"] += bonusQueen;
-          scoreTotal += bonusQueen;
-        }
-      }
-
-      console.log('total', scoreTotal);
-    }
+  
   },
   actions: {
+    getContrabands({commit}) {
+      axios.get('/contraband')
+      .then(res => commit('setContrabands', res.data));
+    },
     addNewPlayer({commit}, player) {
       axios.post('/player', player)
       .then((res) => {
         if (res.data.id) {
           player.id = res.data.id;
-          console.log(player);
           commit('addPlayer', player)
         } else {
           console.log('error registering: player has no id');
@@ -143,11 +91,9 @@ export default new Vuex.Store({
     calculateScore({commit}) {
       if (this.state.players.length) {
         let players_id = this.state.players.map(player => player.id);
-        console.log('player Ids', players_id);
         axios.post('/score', {players_id: players_id})
         .then(res => {
           let response = res.data;
-          console.log(res.data);
           this.state.players.map(player => {
             commit('updatePlayer', {id: player.id, property: 'score', value: response[player.id].score})
             let kings = [];
@@ -160,8 +106,6 @@ export default new Vuex.Store({
             commit('updatePlayer', {id: player.id, property: 'queens', value: queens});
             
           })
-
-          console.log('pós score', this.state.players);
         })
         .catch(err => console.log(err));
       }

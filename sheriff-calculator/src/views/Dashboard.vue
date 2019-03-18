@@ -54,9 +54,6 @@ export default {
   computed: {
     ...mapState(["colorMap", "players"])
   },
-  mounted() {
-    console.log(this.players);
-  }
 };
 </script>
 
