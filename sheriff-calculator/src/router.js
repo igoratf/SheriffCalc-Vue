@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import PlayerForm from './components/PlayerForm';
 import Dashboard from "./views/Dashboard";
-import Home from "./views/Home";
+import Ranking from "./views/Ranking";
 
 Vue.use(Router);
 
@@ -10,6 +9,7 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+
     {
       path: '/dashboard',
       name: "dashboard",
@@ -18,6 +18,11 @@ export default new Router({
     {
       path: '*',
       redirect: '/dashboard'
+    },
+    {
+      path: '/ranking',
+      name: "ranking",
+      component: Ranking
     }
   ],
 });

@@ -14,7 +14,7 @@
           <v-divider></v-divider>
 
           <v-card-actions>
-            <v-btn color="success" flat @click.stop="calculateScore()">Confirm</v-btn>
+            <v-btn color="success" flat @click="calculateGameScore()">Confirm</v-btn>
             <v-spacer></v-spacer>
             <v-btn color="error" flat @click.stop="dialog = false">Close</v-btn>
           </v-card-actions>
@@ -47,7 +47,11 @@ export default {
     ...mapState(['players'])
   },
   methods: {
-    ...mapActions(['calculateScore'])
+    ...mapActions(['calculateScore']),
+    calculateGameScore() {
+      this.dialog = false;
+      this.calculateScore();
+    }
   }
 };
 </script>

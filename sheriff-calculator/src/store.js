@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 Vue.use(Vuex);
@@ -17,7 +17,8 @@ export default new Vuex.Store({
       3: "rgb(218,165,32)",
       4: "rgb(178,34,34)",
     },
-    playerDialog: false
+    playerDialog: false,
+    playerRanking: [],
   },
   getters: {
     currentColor: state => state.colorMap[state.players.length]
@@ -26,6 +27,12 @@ export default new Vuex.Store({
     newGame() {
       this.state.players = [],
       this.state.playerDialog = false;
+    },
+    updatePlayer(state, payload) {
+      let playerId = payload.id;
+      let player = this.state.players.find(player => player.id === playerId);
+
+      Vue.set(player, payload.property, payload.value);      
     },
     openPlayerDialog() {
       if (this.state.players.length < 5) {
@@ -49,6 +56,9 @@ export default new Vuex.Store({
           this.state.players.splice(i, 1);
         }
       }
+    },
+    setPlayerRanking(state, players) {
+      state.playerRanking = players;
     },
     calculateKingAndQueen(state, resource) {
       console.log(resource);
@@ -132,30 +142,34 @@ export default new Vuex.Store({
     },
     calculateScore({commit}) {
       if (this.state.players.length) {
-        const appleScore = 2;
-        const breadScore = 3;
-        const cheeseScore = 3;
-        const chickenScore = 4;
-        for (let i = 0; i < this.state.players.length; i++) {
-          let player = this.state.players[i];
-          let score = 0;
-          score += appleScore * player.apple;
-          score += breadScore * player.bread;
-          score += cheeseScore * player.cheese;
-          score += chickenScore * player.chicken;
-          score += player.contrabandScore;
-          score += player.coin;
-          player.score = score;
-        }
+        let players_id = this.state.players.map(player => player.id);
+        console.log('player Ids', players_id);
+        axios.post('/score', {players_id: players_id})
+        .then(res => {
+          let response = res.data;
+          console.log(res.data);
+          this.state.players.map(player => {
+            commit('updatePlayer', {id: player.id, property: 'score', value: response[player.id].score})
+            let kings = [];
+            let queens = [];
+            if (response[player.id].kingOrQueen) {
+              kings = response[player.id].kingOrQueen.kings;
+              queens = response[player.id].kingOrQueen.queens;
+            }
+            commit('updatePlayer', {id: player.id, property: 'kings', value: kings});
+            commit('updatePlayer', {id: player.id, property: 'queens', value: queens});
+            
+          })
 
-
-        commit('calculateKingAndQueen', "apple");
-        commit('calculateKingAndQueen', "bread");
-        commit('calculateKingAndQueen', "cheese");
-        commit('calculateKingAndQueen', "chicken");
-
-        console.log(this.state.players);
+          console.log('pós score', this.state.players);
+        })
+        .catch(err => console.log(err));
       }
     },
+    getPlayerRanking({commit}) {
+      axios.get('/ranking')
+      .then((res) => commit('setPlayerRanking', res.data))
+      .catch(err => console.log(err));
+    }
   },
 });

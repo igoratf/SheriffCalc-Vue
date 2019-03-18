@@ -11,39 +11,41 @@
       <v-card-text>
         <v-layout row wrap>
           <v-flex xs12 sm12 md6 lg6 xl6>
-            <p>Apple: {{ player.apple }}</p>
+            <p>Apple: {{ playerInfo.apple }}</p>
           </v-flex>
           <v-flex xs12 sm12 md6 lg6 xl6>
-            <p>Cheese: {{ player.cheese }}</p>
+            <p>Cheese: {{ playerInfo.cheese }}</p>
           </v-flex>
           <v-flex xs12 sm12 md6 lg6 xl6>
-            <p>Bread: {{ player.bread }}</p>
+            <p>Bread: {{ playerInfo.bread }}</p>
           </v-flex>
           <v-flex xs12 sm12 md6 lg6 xl6>
-            <p>Chicken: {{player.chicken}}</p>
+            <p>Chicken: {{playerInfo.chicken}}</p>
           </v-flex>
           <v-flex xs12 sm12 md6 lg6 xl6>
-            <p>Contraband: {{player.contrabandScore}}</p>
+            <p>Contraband: {{playerInfo.contrabandScore}}</p>
           </v-flex>
           <v-flex xs12 sm12 md6 lg6 xl6>
-            <p>Coins: {{player.coin}}</p>
+            <p>Coins: {{playerInfo.coin}}</p>
           </v-flex>
         </v-layout>
       </v-card-text>
 
-      <div class="footer" v-if="player.king || player.queen">
+      <div class="footer" v-if="player.kings || player.queens">
         <v-divider></v-divider>
-        <v-card-text>
+        <v-card-text v-for="(item, index) in player.kings" :key="index">
           <p style="color: orange;">
             <strong>
-              Apple King
-              <span style="float: right">+20</span>
+              {{ item }} king!
+              <span style="float: right">+ {{ kingEnum[item] }}</span>
             </strong>
           </p>
-          <p style="color: silver;">
+        </v-card-text>
+        <v-card-text v-for="(item, index) in player.queens" :key="index">
+        <p style="color: silver;">
             <strong>
-              Cheese Queen
-              <span style="float: right">+10</span>
+              {{ item }} queen!
+              <span style="float: right">+ {{ queenEnum[item] }}</span>
             </strong>
           </p>
         </v-card-text>
@@ -54,6 +56,8 @@
           <v-card-actions>
             <v-btn flat color="error" @click="dialog=true">Delete</v-btn>
             <!-- <v-btn flat color="orange">Explore</v-btn> -->
+            <v-spacer></v-spacer>
+          <div class="player-score" v-if="player.score >= 0">Score: {{playerInfo.score}}</div>
           </v-card-actions>
         </template>
 
@@ -77,8 +81,28 @@ export default {
   data() {
     return {
       dialog: false,
-      subtitle: ''
+      subtitle: '',
+      kingEnum: {
+        'apple': 20,
+        'bread': 15,
+        'cheese': 15,
+        'chicken': 10
+      },
+      queenEnum: {
+        'apple': 10,
+        'bread': 10,
+        'cheese': 10,
+        'chicken': 5
+      }
     };
+  },
+  computed: {
+    playerInfo: function() {
+      return this.player;
+    },
+    playerScore: function() {
+      return this.player.score;
+  }
   },
   props: ["color", "player"],  
   methods: {
@@ -88,14 +112,31 @@ export default {
       this.dialog = false;
     }
   },
-};
+}
 </script>
 
 
 <style scoped>
+.v-card__text {
+  padding-bottom: 2px;
+  padding-top: 8px;
+}
+
+.v-card__text > p {
+  margin-bottom: 4px;
+  font-size: 1.2em;
+}
+
 .player {
   margin-top: 10%;
   max-width: 350px;
+}
+
+.player-score {
+  font-weight: bold;
+  color: green;
+  margin-right: 8px;
+  font-size: 1.2em;
 }
 
 .headline {
