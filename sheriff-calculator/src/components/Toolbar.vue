@@ -48,6 +48,7 @@ export default {
       startNewGame() {
          this.dialog = false;
          this.newGame();
+         this.toDashBoard();
       },
       toDashBoard() {
          this.$router.replace('/dashboard');
