@@ -53,7 +53,9 @@ export default {
         }
       ],
       pagination: {
-         rowsPerPage: 10
+         rowsPerPage: 10,
+         sortBy: 'score',
+         descending: true
       }
     };
   },
