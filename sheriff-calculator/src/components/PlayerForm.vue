@@ -78,7 +78,6 @@
                   type="number"
                   min="0"
                   max="99"
-                  hint="example of helper text only on focus"
                   required
                 ></v-text-field>
               </v-flex>
