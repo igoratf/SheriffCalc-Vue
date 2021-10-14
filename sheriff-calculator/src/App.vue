@@ -10,13 +10,15 @@
 import Toolbar from "./components/Toolbar";
 import AddButton from "./components/AddButton";
 import ScoreButton from "./components/ScoreButton";
+import BuyCoffeeButton from "./components/BuyCoffeeButton";
 
 export default {
   name: "App",
   components: {
     Toolbar,
     AddButton,
-    ScoreButton
+    ScoreButton,
+    BuyCoffeeButton
   },
   data() {
     return {

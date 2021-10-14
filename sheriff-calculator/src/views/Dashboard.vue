@@ -1,36 +1,43 @@
 <template>
   <div id="dashboard">
-    <Toolbar/>
+    <Toolbar />
     <v-container grid-list-md text-ms-center fluid>
       <div class="headline-container" v-if="!players.length">
         <!-- <img src="../assets/sheriff_of_nottingham.jpg"> -->
         <div class="title-container">
-        <h1>Welcome to<br> Sheriff of Nottingham <br> Score Calculator</h1>
+          <h1>
+            Welcome to<br />
+            Sheriff of Nottingham <br />
+            Score Calculator
+          </h1>
         </div>
-        <br>
-        <br>
+        <br />
+        <br />
         <h2 style="color: darkgoldenrod">Please insert new players to calculate a game score</h2>
       </div>
-      <PlayerForm/>
+      <PlayerForm />
       <v-layout justify-center row wrap>
         <v-flex shrink v-for="(player, index) in players" :key="player.id">
-          <Player :color="colorMap[index]" :player="player"/>
+          <Player :color="colorMap[index]" :player="player" />
         </v-flex>
       </v-layout>
     </v-container>
 
     <div class="btn-fixed-container">
+      
       <div>
-        <AddButton/>
+        <AddButton />
       </div>
 
       <div>
-        <ScoreButton/>
+        <ScoreButton />
+      </div>
+            <div>
+        <BuyCoffeeButton />
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import Player from "../components/Player";
@@ -38,6 +45,7 @@ import PlayerForm from "../components/PlayerForm";
 import Toolbar from "../components/Toolbar";
 import AddButton from "../components/AddButton";
 import ScoreButton from "../components/ScoreButton";
+import BuyCoffeeButton from "../components/BuyCoffeeButton";
 import { mapState } from "vuex";
 export default {
   name: "Dashboard",
@@ -45,15 +53,16 @@ export default {
     Player,
     PlayerForm,
     Toolbar,
-    AddButton, 
-    ScoreButton
+    AddButton,
+    ScoreButton,
+    BuyCoffeeButton
   },
   data() {
     return {};
   },
   computed: {
     ...mapState(["colorMap", "players"])
-  },
+  }
 };
 </script>
 
@@ -62,7 +71,7 @@ export default {
   text-align: center;
   font-weight: bolder;
   margin-top: 10%;
-  font-family: 'Kaushan Script', cursive;
+  font-family: "Kaushan Script", cursive;
 }
 .title-container {
   display: inline-flex;
@@ -78,5 +87,3 @@ h1 {
   font-size: 4em;
 }
 </style>
-
-

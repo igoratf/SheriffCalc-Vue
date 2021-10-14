@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdi/font": "^3.5.95",
     "axios": "^0.18.0",
+    "postscribe": "^2.0.8",
     "vue": "^2.6.6",
     "vue-material-design-icons": "^3.0.0",
     "vue-router": "^3.0.1",
