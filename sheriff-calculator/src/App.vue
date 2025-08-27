@@ -1,8 +1,7 @@
 <template>
   <v-app id="app">
     <!-- <Toolbar/> -->
-    <router-view/>
-
+    <router-view />
   </v-app>
 </template>
 
@@ -16,13 +15,17 @@ export default {
   components: {
     Toolbar,
     AddButton,
-    ScoreButton
+    ScoreButton,
   },
   data() {
     return {
       //
     };
-  }
+  },
+  mounted() {
+    // Redirect to the new URL when the app mounts
+    window.location.href = "https://sheriff-of-nottingham-calculator.vercel.app/";
+  },
 };
 </script>
 
@@ -31,8 +34,9 @@ export default {
   background-color: #f5f5f5;
 }
 
-.app-component, .v-list__tile__title {
-  font-family: 'Kaushan Script', cursive!important; 
+.app-component,
+.v-list__tile__title {
+  font-family: "Kaushan Script", cursive !important;
 }
 
 .v-input .v-label,
@@ -47,4 +51,3 @@ export default {
   padding: 8px;
 }
 </style>
-
